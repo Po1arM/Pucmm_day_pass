@@ -27,6 +27,16 @@ public class UsuariosController {
         return "index";
     }
 
+    @RequestMapping("/login")
+    public String login(Model model) {
+        return "login";
+    }
+
+    @RequestMapping("/admin")
+    public String admin(Model model) {
+        return "admin";
+    }
+
     @RequestMapping("/crearEstuiante")
     public String crearEstudiante(Model model){
         Usuario usuario = new Usuario();
