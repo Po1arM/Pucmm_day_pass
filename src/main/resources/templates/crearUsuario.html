@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sistema de Inventario</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="margin-left: 7%">PUCMM Day Pass</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+<div style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
+
+  <div class="card" style="margin-left: 7%; margin-right: 7%; margin-top: 1%;">
+    <div class="card-body">
+      <form method="POST" th:action = "@{crearUsuario}" th:object="${usuario}">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Nombre: </span>
+          <input type="text" class="form-control" aria-describedby="basic-addon1" th:field="*{nombre}" >
+
+          <span class="input-group-text" id="basic-addon2">Apellido: </span>
+          <input type="text" class="form-control" aria-describedby="basic-addon2" name="apellido" th:field="*{}">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon3">Nacionalidad: </span>
+          <input type="text" class="form-control" aria-describedby="basic-addon1" name= "nacionalidad" th:field="*{nacionalidad}" >
+
+          <span class="input-group-text" id="basic-addon4">Fecha Nacimiento: </span>
+          <input type="date" class="form-control" aria-describedby="basic-addon2" name="fechaNacimiento">
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon5">Correo: </span>
+          <input type="text" class="form-control" aria-describedby="basic-addon1" name= "username" th:field="*{username}" >
+
+          <span class="input-group-text" id="basic-addon6">Contraseña: </span>
+          <input type="password" class="form-control" aria-describedby="basic-addon2" name="password">
+        </div>
+        <div class="btn-toolbar" role="toolbar">
+          <div class="btn-group me-2" role="group">
+            <button type="submit"  class="btn btn-primary" th:text="#{aceptar}">Aceptar</button>
+          </div>
+          <div class="btn-group me-2" role="group">
+            <a th:href="@{/}" class="btn btn-danger" th:text="#{cancelar}">Cancelar</a>
+          </div>
+        </div>      </form>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
