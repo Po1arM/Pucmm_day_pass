@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pucmm.eitc.crud_estudiantes.entities.EnumRol;
 import pucmm.eitc.crud_estudiantes.entities.Usuario;
@@ -17,15 +18,14 @@ import java.util.*;
 public class SeguridadServices implements UserDetailsService {
     @Autowired
     private EstudianteRepository estudianteRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Usuario user = estudianteRepository.findByUsername(username);
-        if (user == null){
-            System.out.println("ERROR NULL MMG");
-        }else{
-            System.out.println("encontrado" + user.getUsername());
-        }
+
+        System.out.println("encontrado" + user.getUsername());
+
         Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
         assert user != null;
         roles.add(new SimpleGrantedAuthority(user.getRol().toString()));
@@ -38,7 +38,7 @@ public class SeguridadServices implements UserDetailsService {
     public void crearUsuarioAdmin() {
         Usuario admin = new Usuario();
         admin.setUsername("admin");
-        admin.setPassword("admin");
+        admin.setPassword(bCryptPasswordEncoder.encode("admin"));
         admin.setNombre("Administrador");
         admin.setActivo(true);
         admin.setRol(EnumRol.ADMIN);

@@ -16,7 +16,7 @@
     </div>
 </nav>
 <div style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-    <a href="#" class="btn btn-primary" style="margin-left: 7%; margin-right: 7%; margin-top: 1%;">Registrar Usuario</a>
+    <a th:href="@{crearEstuiante}" class="btn btn-primary" style="margin-left: 7%; margin-right: 7%; margin-top: 1%;">Registrar Usuario</a>
 
     <div class="card" style="margin-left: 7%; margin-right: 7%; margin-top: 1%;">
         <div class="card-body">
@@ -33,16 +33,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>PROD-1</td>
-                    <td>Mouse Dell nub nfea</td>
-                    <td>Inidividual</td>
-                    <td>40</td>
-                    <td style="width: 25%;">
-                        <a href="#" class="btn btn-success">Modificar</a>
-                        <a href="#" class="btn btn-danger">Eliminar</a>
-                    </td>
-                </tr>
+                    <th:block th:each = "usuario : ${usuarios}">
+
+                        <tr>
+                            <td th:text = "${usuario.id}"></td>
+                            <td th:text = "${usuario.nombre}"></td>
+                            <td th:text = "${usuario.apellido}"></td>
+                            <td th:text = "${usuario.nacionalidad}"></td>
+                            <td th:text = "${usuario.getEdad()}"></td>
+                            <td th:text = "${usuario.username}"></td>
+                            <td style="width: 25%;">
+                                <a th:href="@{modificarUsuario(id = ${usuario.id})}" class="btn btn-success">Modificar</a>
+                                <a th:href="@{borrarUsuario(id = ${usuario.id})}" class="btn btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                    </th:block>
 
                 </tbody>
             </table>

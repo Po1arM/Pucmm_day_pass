@@ -22,6 +22,8 @@ public class UsuariosController {
     @RequestMapping("/")
     public String index(Model model){
         List<Usuario> usuarios = estudianteService.listar();
+        usuarios.remove(0);
+        model.addAttribute("usuarios",usuarios);
         return "index";
     }
 
@@ -39,11 +41,11 @@ public class UsuariosController {
         usuario.setNombre(request.getParameter("nombre"));
         usuario.setApellido(request.getParameter("apellido"));
         usuario.setNacionalidad(request.getParameter("nacionalidad"));
-        usuario.setRol(EnumRol.valueOf(request.getParameter("rol")));
+        usuario.setRol(EnumRol.ESTUDIANTE);
         usuario.setActivo(true);
         usuario.setFechaNacimiento(LocalDate.parse(request.getParameter("fechaNacimiento")));
         usuario.setPassword(request.getParameter("pass"));
-        usuario.setUsername(request.getParameter("correo"));
+        usuario.setUsername(request.getParameter("username"));
 
         estudianteService.crearEstudiante(usuario);
 
